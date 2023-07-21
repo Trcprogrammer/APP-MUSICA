@@ -1,0 +1,30 @@
+.item{
+    margin-top:10px;
+padding: 20px;
+width: 100%;
+ 
+}
+
+.item:hover,.link:hover  {
+    /* border-top: red 3px solid ;
+    border-bottom: red 3px solid ; */
+    background:  white;
+    color: rgb(0, 0, 0);
+    transition: 1s;
+}
+
+.caja,.caja-1{
+    width: 100%;
+    margin: 0;
+}
+.caja-1{
+    text-align: center;
+}
+
+.link{
+    text-decoration: none;
+    font-size: 30px;
+    font-weight: bold;
+     color: white;
+}
+

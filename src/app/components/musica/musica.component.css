@@ -1,0 +1,27 @@
+.principal {
+  width: 100%;
+  height: 100%;
+}
+
+.reproducir {
+  cursor: pointer;
+}
+
+.reproducir:hover {
+  background-color: rgb(17, 15, 15);
+}
+
+.pausar,
+.izquierda,
+.derecha,
+.iniciar {
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+}
+.pausar:hover,
+.izquierda:hover,
+.derecha:hover,
+.iniciar:hover {
+  color: rgba(255, 255, 255, 0.839);
+  cursor: pointer;
+}

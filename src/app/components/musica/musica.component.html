@@ -1,0 +1,137 @@
+<div class="principal bg-dark">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <h1 class="display-1 fw-bold text-light text-center">
+          Mus<span class="text-danger">i</span>cas
+        </h1>
+        <hr />
+      </div>
+
+      <div
+        class="col-lg-12 d-flex justify-content-center"
+        style="height: 400px"
+      >
+        <div class="d-flex align-items-center w-75">
+          <table class="table table-dark table-borderless">
+            <thead>
+              <tr class="">
+                <th class="text-start">Nombre</th>
+                <th class="text-start">Tipo</th>
+                <th class="text-star">Genero</th>
+              </tr>
+            </thead>
+            <tbody class="" *ngFor="let musica of musicas">
+              <tr class="">
+                <td
+                  (click)="iniciar(musica.ruta)"
+                  class="text-start reproducir  "
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    fill="currentColor"
+                    class="bi bi-music-note-beamed"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      d="M6 13c0 1.105-1.12 2-2.5 2S1 14.105 1 13c0-1.104 1.12-2 2.5-2s2.5.896 2.5 2zm9-2c0 1.105-1.12 2-2.5 2s-2.5-.895-2.5-2 1.12-2 2.5-2 2.5.895 2.5 2z"
+                    />
+                    <path
+                      fill-rule="evenodd"
+                      d="M14 11V2h1v9h-1zM6 3v10H5V3h1z"
+                    />
+                    <path
+                      d="M5 2.905a1 1 0 0 1 .9-.995l8-.8a1 1 0 0 1 1.1.995V3L5 4V2.905z"
+                    />
+                  </svg>
+                  {{ musica.nombre }}
+                </td>
+                <td>{{ musica.tipo }}</td>
+                <td>{{ musica.genero }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <audio id="audio"></audio>
+    </div>
+    <div
+      class="row p-3"
+      *ngIf="control === true"
+      style="
+        border-top: 1px white solid;
+        background-color: rgba(0, 0, 0, 0.067);
+        transition: 2s;
+      "
+    >
+      <div class="col-lg-12 d-flex justify-content-center">
+        <div (click)="izquierda()">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="50"
+            height="50"
+            fill="currentColor"
+            class="bi bi-arrow-left-square-fill izquierda"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1z"
+            />
+          </svg>
+        </div>
+
+        <div class="" (click)="pausar()" *ngIf="pausarIniciar === false">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="50"
+            height="50"
+            fill="currentColor"
+            class="bi bi-pause-circle-fill iniciar mx-2"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM6.25 5C5.56 5 5 5.56 5 6.25v3.5a1.25 1.25 0 1 0 2.5 0v-3.5C7.5 5.56 6.94 5 6.25 5zm3.5 0c-.69 0-1.25.56-1.25 1.25v3.5a1.25 1.25 0 1 0 2.5 0v-3.5C11 5.56 10.44 5 9.75 5z"
+            />
+          </svg>
+        </div>
+
+        <div
+          class="pausa"
+          *ngIf="pausarIniciar === true"
+          (click)="iniciarMusica()"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="50"
+            height="50"
+            fill="currentColor"
+            class="bi bi-caret-right-square-fill pausar mx-2"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm5.5 10a.5.5 0 0 0 .832.374l4.5-4a.5.5 0 0 0 0-.748l-4.5-4A.5.5 0 0 0 5.5 4v8z"
+            />
+          </svg>
+        </div>
+
+        <div (click)="derecha()">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="50"
+            height="50"
+            fill="currentColor"
+            class="bi bi-arrow-right-square-fill derecha"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M0 14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v12zm4.5-6.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5a.5.5 0 0 1 0-1z"
+            />
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
